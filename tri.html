@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header"><img src="images/BG.jpg" height="150" width="100%">
+						<div class="inner" style="font-family: Microsoft JhengHei">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.jpg" alt="" /></span><span class="title">日本に行こよ</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu" style="font-family: Microsoft JhengHei">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="50.html">50音介紹</a></li>
+							<li><a href="video.html">日本文化學習影片</a></li>
+							<li><a href="sakura.html">賞櫻去</a></li>
+							<li><a href="map.html">街景地圖</a></li>
+							<li><a href="tri.html">日本旅遊文章</a></li>
+							<li><a href="train.html">東京車站路線</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner" style="font-family: Microsoft JhengHei">
+							<h1>日本旅遊文章</h1>
+							
+							<div id="pixnet-stuff"></div>
+							<script>
+      var xmlhttp = new XMLHttpRequest();
+      var url = "https://emma.pixnet.cc/mainpage/blog/categories/hot/29?page=7&per_page=5&api_version=2&format=json";
+      //hot, 26:美味食記
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var myArr = JSON.parse(xmlhttp.responseText);
+          myFunction(myArr);
+        }
+      }
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+///////////////////////////////////////////////////////////////////////////////////////////
+      function myFunction(arr) {
+        var data = arr.articles;
+        var out = "";
+        var i;
+        var temp=""
+        for (i = 0; i < data.length; i++) {         
+          out += '<div class="col s12 m6 l3" ><div class="card medium"><div class="card-image">';          
+          if ( data[i].thumb != "" ) out += '<img src="' + data[i].thumb + ' "height="180">';
+          /*if ( data[i].title != "" ) out += '<p><a href="' + data[i].link + '" target="_blank">' + '<span class="title">' + data[i].title +'</span>' + '</a></p>';*/
+          if ( data[i].title != "" ) out += '<span class="title" style="font-size:small;font-weight:bold;">' + data[i].title +'</span></div>';           
+          
+          if ( data[i].tags.length != 0 )
+          {
+            out += '<div class="card-content"  style="font-size:x-small"> <p>';
+            for (j = 0; j < data[i].tags.length; j++) {
+              out += data[i].tags[j].tag + ', ';              
+            }
+            out += '</div>';
+          }          
+          out += '<div class="card-action"><a href="'+ data[i].link + '" target="_blank">click me</a></div>';
+          out += '</div></div>';
+          
+        }
+        document.getElementById("pixnet-stuff").innerHTML = out;
+      }
+      </script>
+      <script type="text/javascript">
+        /*$(document).ready(function(){
+          $('.carousel').carousel({full_width: true});
+          $('.btn').click(function(){
+            $('html,body').animate({scrollTop:$('#pixnet-stuff').offset().top},800);
+          });
+          ;
+
+        });*/
+      </script>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner" style="font-family: Microsoft JhengHei">
+							
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
